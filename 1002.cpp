@@ -1,35 +1,38 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<cstdio>
 using namespace std;
-int main(int argc, char const *argv[])
+int main()
 {
-    int count=0;
-    double polynomial[1001]={0};
-    int n;
-    cin>>n;
-    for(int i = 0;i < n;i++)
+    double a[1001]={0},b[1001]={0},sum[1001]={0};
+    int k1,k2;
+    cin>>k1;
+    for(int i = 0;i < k1;i++)
     {
-        int a;
-        double b;
-        cin>>a>>b;
-        polynomial[a] = b;
+        int x;
+        double y;
+        cin>>x>>y;
+        a[x] = y;
     }
-    cin>>n;
-    for(int i = 0;i < n;i++)
+    cin>>k2;
+    for(int i = 0;i < k2;i++)
     {
-        int a;
-        double b;
-        cin>>a>>b;
-        polynomial[a] += b;
+        int x;
+        double y;
+        cin>>x>>y;
+        b[x] = y;
     }
-    //0项不输出，但是题目没说，自己WA以后猜的
-    for(int i = 0;i <= 1000;i++)
-        if(polynomial[i])
+    int count = 0;
+    for(int i = 0;i < 1001;i++)
+    {
+        sum[i] = a[i]+b[i];
+        if(sum[i]!=0)
             count++;
+    }
     cout<<count;
-    
-    for(int i = 1000;i>=0;i--){
-        if(polynomial[i])
-            printf(" %d %.1lf",i,polynomial[i]);
+    for(int i = 1000;i >= 0;i--)
+    {
+        if(sum[i]!=0)
+            printf(" %d %.1lf",i,sum[i]);
     }
     cout<<endl;
     return 0;
